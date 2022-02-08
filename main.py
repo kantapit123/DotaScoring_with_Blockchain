@@ -10,6 +10,8 @@ f = open("datatest.txt","r")
 print(f.read())
 '''
 
+
+
 class dataBlock:
 
     def __init__(self, previous_block_hash, transection_list, block_index):
@@ -27,7 +29,6 @@ class dataBlock:
     def blockSelect(self, b_index):
         pass
     #Database
-
 #print all block from file
 def printallblock(s):
     c=1
@@ -44,7 +45,6 @@ def printallblock(s):
             c+=1
         if (i!="]" and i!="[" and i!="\'"):
             print(i,end ="")
-
 #blockPrint
 def blockPrint(transections):
     print("")
@@ -105,6 +105,7 @@ while f1 != 0:
     print("[3] Show all Block")
     print("[4] Show Selected Block")
     print("[0] Exit")
+    
     f1 = int(input(("\nSelect mode > ")))
     print("")
 
@@ -195,13 +196,11 @@ while f1 != 0:
         print("\n====== Show Current Block!!! ======")
         blockPrint(blocks)
         print("=================================\n")
-    #Select and show block by index
     elif (f1 == 3):
         print("\n====== Show all Block!!! ======")
         with open("datatest.txt","r+") as rb:
             printallblock(rb.read())
         print("=================================\n")
-        pass
     elif (f1 == 4):
         s_index = int(input("Please enter index of block > "))
         if s_index > len(data_block):
@@ -225,5 +224,7 @@ while f1 != 0:
             print("\n=================================\n")
     elif (f1 == 0):
         break
+ 
+
 
 #print(hashlib.sha256('1234'.encode()).hexdigest())
