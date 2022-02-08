@@ -1,3 +1,5 @@
-
-['this block no transection']['eea822e1504b10b2e6c808a4f7dff95388f44369b83662b57d10dfd51172aa4b']['1']
-['PSG 2 : 1 Fnatic and The winner is \\PSG/']['d77c16cadb5f7e012d859b26b94bef9f50fbd68eb83a2bea4c6f8776cfb34007']['2']
+['Genesis Block']['0']['89eb0ac031a63d2421cd05a2fbe41f3ea35f5c3712ca839cbf6b85c4ee07b7a3']['1']
+----------------------------------------------------------------------------------------------------['T1 2 : 1 OG and The winner is \\T1/']['89eb0ac031a63d2421cd05a2fbe41f3ea35f5c3712ca839cbf6b85c4ee07b7a3']['920a7101847dad465a5c70fbb809929cafd7a916e7b293f4d332ef955fae2ef3']['2']
+----------------------------------------------------------------------------------------------------['T1 2 : 1 OG and The winner is \\T1/ -----> OG 1 : 2 T1 and The winner is \\T1/']['920a7101847dad465a5c70fbb809929cafd7a916e7b293f4d332ef955fae2ef3']['ed8c089e0ce48468ce0cbf61b5d2b96ea16d03df55226f5a2fe3bd81991ff260']['3']
+----------------------------------------------------------------------------------------------------['T1 2 : 1 OG and The winner is \\T1/ -----> OG 1 : 2 T1 and The winner is \\T1/ -----> Virtus.pro 1 : 2 Vici Gaming and The winner is \\Vici Gaming/']['ed8c089e0ce48468ce0cbf61b5d2b96ea16d03df55226f5a2fe3bd81991ff260']['e81e4d0e879cb151c759152bdc29106bca5708d9cd56448538c8d15ef7d39ae7']['4']
+----------------------------------------------------------------------------------------------------
