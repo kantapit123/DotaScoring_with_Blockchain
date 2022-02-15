@@ -2,6 +2,8 @@ import copy # fork a chain
 import datetime # get real time for timestamps
 import hashlib
 from select import select # hash
+from time import sleep
+
 
 class MinimalBlock():
     def __init__(self, index, timestamp, data, previous_hash):
@@ -99,13 +101,6 @@ class MinimalChain():
         return self.fork(min_chain_size)
     
 c = MinimalChain() # Start a chain
-
-'''
-c_forked = c.fork('latest')
-print(c_forked.blocks[9].index)
-
-c_forked.blocks[9].index = -9
-print(c_forked.blocks[9].index)'''
 x=1
 team_list = ['Thunder Predator', 
              'Team Aster', 
@@ -136,12 +131,13 @@ tx_list=["Fnatic vs Team Undying in bo1 and the winner is Fnatic with score 1:0"
          "T1 vs Alliance in bo3 the winner is T1 with score 2:0"]
 
 for i in range(len(tx_list)):
+    sleep(0.05)
     c.add_block(tx_list[i])
 
 while(x!=0):
     c_forked = c.fork('latest')
     print("=======================================================")
-    m=int(input("Mode1: print all block\nMode2: add new block\nMode3: print last block \nMode4: test edit\nMode5: exit\n\nselect mode:"))
+    m=int(input("Select 0: exit\nMode1: print all block\nMode2: add new block\nMode3: print last block \nMode4: test edit\nMode5: print score\nMode6: Verify Data\n\nselect mode:"))
     print("=======================================================")
     if(m==1):
         
@@ -194,7 +190,7 @@ while(x!=0):
             if(bo==1):
                 s1=int(input("enter team "+team_list[t1]+"score:"))
                 if(s1>1):
-                    print("enter the possible score in bo1")
+                    print("please enter correct score!!!")
                     continue
                 if(s1==1):
                     s2=0
@@ -208,7 +204,7 @@ while(x!=0):
                 s1=int(input("enter team "+team_list[t1]+"score:"))
                 s2=int(input("enter team "+team_list[t2]+"score:"))
                 if(s1+s2>3):
-                    print("enter the possible score in bo3")
+                    print("please enter correct score!!!")
                     continue
                 if(s1>s2):
                     winner=team_list[t1]
@@ -219,22 +215,23 @@ while(x!=0):
             if(bo==5):
                 s1=int(input("enter team "+team_list[t1]+"score:"))
                 s2=int(input("enter team "+team_list[t2]+"score:"))
-                if(s1+s2>5):
-                    print("enter the possible score in bo3")
-                    continue
-                if(s1>s2):
-                    winner=team_list[t1]
-                    select_score=False
+                if(s1==3 or s2==3) and (s1+s2<=5 and s1+s2>2):
+                    
+                    if(s1>s2):
+                        winner=team_list[t1]
+                        select_score=False
+                    else:
+                        winner=team_list[t2]
+                        select_score=False
                 else:
-                    winner=team_list[t2]
-                    select_score=False
+                    print("please enter correct score!!!")
                 
                 
                 
                 
                 
-        print(team_list[t1] + " vs " +  team_list[t2] + " in best of" + str(bo) +" and the winner is " + winner + "with score " + str(s1) + ":" + str(s2))
-        c.add_block(team_list[t1] + " vs " +  team_list[t2] + " in best of" + str(bo) +" and the winner is " + winner + "with score " + str(s1) + ":" + str(s2))
+        print(team_list[t1] + " vs " +  team_list[t2] + " in best of " + str(bo) +" and the winner is " + winner + " with score " + str(s1) + ":" + str(s2))
+        c.add_block(team_list[t1] + " vs " +  team_list[t2] + " in best of " + str(bo) +" and the winner is " + winner + " with score " + str(s1) + ":" + str(s2))
         
     if(m==3):
         print("block timestamp :"+str(c.blocks[len(c.blocks)-1].timestamp))
@@ -253,24 +250,36 @@ while(x!=0):
         if(cd==1):
             print("old data is " + str(c.blocks[ed].index))
             temp=int(input("change to:"))
-            c_forked = c.fork('latest')
-            c_forked.blocks[ed].index = temp
-            c_forked.verify()
+            c.blocks[ed].index = temp
+            c.verify()
         if(cd==2):
             print("old data is " + str(c.blocks[ed].data))
             temp=input("change to:")
-            c_forked = c.fork('latest')
-            c_forked.blocks[ed].data = temp
-            c_forked.verify()
+            c.blocks[ed].data = temp
+            c.verify()
         if(cd==3):
             print("old data is " + str(c.blocks[ed].previous_hash))
             temp=int(input("change to:"))
-            c_forked = c.fork('latest')
-            c_forked.blocks[ed].previous_hash = temp
-            c_forked.verify()
+            c.blocks[ed].previous_hash = temp
+            c.verify()
     if(m==5):
+        print("-- print score data --")
+        mn=int(input("Enter match number (1 - " + str(len(c.blocks)-1) + ")"))
+        print("match " + str(mn) +" : " + str(c.blocks[mn].data))
+        
+        
+    
+    if(m==6):
         print("-- verifing data --")
-        c_forked.verify()
+        if(c.verify()):
+            print("no block has been edited")
+        else:
+            print("warning !!! some blocks has been edited")
+
+        
+    
+    
+    if(m==0):
         break
         
    
