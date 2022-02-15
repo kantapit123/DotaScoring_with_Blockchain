@@ -256,9 +256,8 @@ while(x!=0):
         cd=int(input("\t1:index\n\t2:blockdata\n\t3:block previous_hash\n\n >> "))
         if(cd==1):
             print("old data is " + str(c.blocks[ed].index))
-            temp=int(input("change to: "))
-                
-      c.blocks[ed].index = temp
+            temp=int(input("change to: "))    
+            c.blocks[ed].index = temp
             c.verify()
         if(cd==2):
             print("old data is " + str(c.blocks[ed].data))
