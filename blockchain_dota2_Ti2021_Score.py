@@ -216,6 +216,7 @@ while(x!=0):
             if(bo==5):
                 s1=int(input("Enter team "+team_list[t1]+" score >> "))
                 s2=int(input("Enter team "+team_list[t2]+" score >> "))
+
                 if(s1==3 or s2==3) and (s1+s2<=5 and s1+s2>2):
                     
                     if(s1>s2):
@@ -226,10 +227,13 @@ while(x!=0):
                         select_score=False
                 else:
                     print("Please enter correct score!!!")
+
+
                 
                 
                 
                 
+
         print("")
         print(team_list[t1] + " VS " +  team_list[t2] + " in best of " + str(bo) +" and the winner is " + winner + " with score " + str(s1) + ":" + str(s2))
         c.add_block(team_list[t1] + " VS " +  team_list[t2] + " in best of " + str(bo) +" and the winner is " + winner + " with score " + str(s1) + ":" + str(s2))
@@ -253,11 +257,13 @@ while(x!=0):
         if(cd==1):
             print("old data is " + str(c.blocks[ed].index))
             temp=int(input("change to: "))
-            c.blocks[ed].index = temp
+                
+      c.blocks[ed].index = temp
             c.verify()
         if(cd==2):
             print("old data is " + str(c.blocks[ed].data))
             temp=input("change to: ")
+
             c.blocks[ed].data = temp
             c.verify()
         if(cd==3):
@@ -271,6 +277,7 @@ while(x!=0):
         print("================================================"*2)
         print("match " + str(mn) +" : " + str(c.blocks[mn].data))
         print("================================================"*2)
+
         
         
     
@@ -281,9 +288,6 @@ while(x!=0):
         else:
             print("Warning !!! some blocks has been edited")
         print("=================================================")
-        
-    
-    
     if(m==0):
         break
         
