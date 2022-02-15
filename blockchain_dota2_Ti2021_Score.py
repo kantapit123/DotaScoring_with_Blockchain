@@ -5,7 +5,7 @@ from select import select # hash
 from time import sleep
 
 
-class MinimalBlock():
+class DotaBlock():
     def __init__(self, index, timestamp, data, previous_hash):
         self.index = index
         self.timestamp = timestamp
@@ -35,7 +35,7 @@ class MinimalBlock():
         else:
             return False
 
-class MinimalChain():
+class DotaChain():
     def __init__(self): # initialize when creating a chain
         self.blocks = [self.get_genesis_block()]
     
@@ -46,13 +46,13 @@ class MinimalChain():
             return False
     
     def get_genesis_block(self): 
-        return MinimalBlock(0, 
+        return DotaBlock(0, 
                             datetime.datetime.utcnow(), 
                             'Genesis', 
                             'B6216139_B6210526')
     
     def add_block(self, data):
-        self.blocks.append(MinimalBlock(len(self.blocks), 
+        self.blocks.append(DotaBlock(len(self.blocks), 
                                         datetime.datetime.utcnow(), 
                                         data, 
                                         self.blocks[len(self.blocks)-1].hash))
@@ -100,7 +100,7 @@ class MinimalChain():
                 return self.fork(i-1)
         return self.fork(min_chain_size)
     
-c = MinimalChain() # Start a chain
+c = DotaChain() # Start a chain
 x=1
 team_list = ['Thunder Predator', 
              'Team Aster', 
