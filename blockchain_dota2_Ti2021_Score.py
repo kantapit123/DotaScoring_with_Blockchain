@@ -136,61 +136,62 @@ for i in range(len(tx_list)):
 
 while(x!=0):
     c_forked = c.fork('latest')
-    print("=======================================================")
-    m=int(input("Select 0: exit\nMode1: print all block\nMode2: add new block\nMode3: print last block \nMode4: test edit\nMode5: print score\nMode6: Verify Data\n\nselect mode:"))
-    print("=======================================================")
+    #print("=======================================================")
+    m=int(input("\nMode1: Print all block\nMode2: Add new block\nMode3: Print current block \nMode4: Edit mode\nMode5: Print score\nMode6: Verify data\n\nSelect 0: Exit\n\nselect mode >> "))
+    #print("=======================================================")
     if(m==1):
         
         for i in range (len(c.blocks)):
-            print("\n================================================")
-            print("block timestamp:" +str(c.blocks[i].timestamp) + "\nblock nuber :" + str(c.blocks[i].index) +"\nblock data: "+ c.blocks[i].data + "\nblock data hash :" + c.blocks[i].hash + "\nblock previous_hash" + str(c.blocks[i].previous_hash) + "}")
-            print("================================================\n")
+            print("================================================"*2)
+            print("block timestamp: " +str(c.blocks[i].timestamp) + "\nblock index: " + str(c.blocks[i].index) +"\nblock data: "+ c.blocks[i].data + "\nblock data hash: " + c.blocks[i].hash + "\nblock previous_hash: " + str(c.blocks[i].previous_hash))
+            print("================================================"*2)
+            print("\t\t\t\t\t()\n\t\t\t\t\t()")
 
     if(m==2):
         
-        print("select team")
+        print("===== Select team =====")
         for i in range (len(team_list)):
-            print("team " + str(i+1) + ":" + team_list[i])
+            print("Team " + str(i+1) + ": " + team_list[i])
         select_team =True
         select_bo=True
         select_score=True
         while(select_team):
-            t1=int(input("team1 is :"))-1
-            print("team1 is"+ team_list[t1])
+            t1=int(input("TeamA is >> "))-1
+            print("TeamA is "+ team_list[t1])
             if(t1>len(team_list)-1):
-                print("please enter exist team")
+                print("Please enter exist team!")
                 continue
         
-            t2=int(input("team2 is :"))-1
-            print("team2 is"+ team_list[t2])
+            t2=int(input("TeamB is >> "))-1
+            print("TeamB is "+ team_list[t2])
             if(t2>len(team_list)-1):
-                print("please enter exist team")
+                print("Please enter exist team!")
                 continue
             if(t1<0):
-                print("cannot select negative number")
+                print("Cannot select negative number!!")
             if(t2<0):
-                print("cannot select negative number")
+                print("Cannot select negative number!!")
             if(t2==t1):
-                print("do not select the same team")
+                print("Do not select the same team!!!")
                 continue
             if(t2!=t1):
-                print("team "+ team_list[t1]+ " vs " +  team_list[t2])
+                print(team_list[t1]+ " VS " +  team_list[t2])
                 select_team=False
         while(select_bo):
-            print("select the match is Best of (1|3|5) ")
-            bo=int(input("This match is Best of (1|3|5) :"))
+            print("\nSelect the match is Best of (1|3|5) ")
+            bo=int(input("This match is Best of (1|3|5) >> "))
             if(bo==1 or bo==3 or bo==5):
-                print("This match is BO "+ str(bo))
+                print("This match is Best of "+ str(bo))
                 select_bo=False
                 
             else:
-                print("enter 1 3 or 5")
+                print("Please enter 1 3 or 5!")
                 continue
         while(select_score):
             if(bo==1):
-                s1=int(input("enter team "+team_list[t1]+"score:"))
+                s1=int(input("Enter team "+team_list[t1]+" score >> "))
                 if(s1>1):
-                    print("please enter correct score!!!")
+                    print("Please enter correct score!!!")
                     continue
                 if(s1==1):
                     s2=0
@@ -201,10 +202,10 @@ while(x!=0):
                     winner=team_list[t2]
                     select_score=False
             if(bo==3):
-                s1=int(input("enter team "+team_list[t1]+"score:"))
-                s2=int(input("enter team "+team_list[t2]+"score:"))
+                s1=int(input("Enter team "+team_list[t1]+" score >> "))
+                s2=int(input("Enter team "+team_list[t2]+" score >> "))
                 if(s1+s2>3):
-                    print("please enter correct score!!!")
+                    print("Please enter correct score!!!")
                     continue
                 if(s1>s2):
                     winner=team_list[t1]
@@ -213,8 +214,9 @@ while(x!=0):
                     winner=team_list[t2]
                     select_score=False
             if(bo==5):
-                s1=int(input("enter team "+team_list[t1]+"score:"))
-                s2=int(input("enter team "+team_list[t2]+"score:"))
+                s1=int(input("Enter team "+team_list[t1]+" score >> "))
+                s2=int(input("Enter team "+team_list[t2]+" score >> "))
+
                 if(s1==3 or s2==3) and (s1+s2<=5 and s1+s2>2):
                     
                     if(s1>s2):
@@ -224,61 +226,68 @@ while(x!=0):
                         winner=team_list[t2]
                         select_score=False
                 else:
-                    print("please enter correct score!!!")
+                    print("Please enter correct score!!!")
+
+
                 
                 
                 
                 
-                
-        print(team_list[t1] + " vs " +  team_list[t2] + " in best of " + str(bo) +" and the winner is " + winner + " with score " + str(s1) + ":" + str(s2))
-        c.add_block(team_list[t1] + " vs " +  team_list[t2] + " in best of " + str(bo) +" and the winner is " + winner + " with score " + str(s1) + ":" + str(s2))
+
+        print("")
+        print(team_list[t1] + " VS " +  team_list[t2] + " in best of " + str(bo) +" and the winner is " + winner + " with score " + str(s1) + ":" + str(s2))
+        c.add_block(team_list[t1] + " VS " +  team_list[t2] + " in best of " + str(bo) +" and the winner is " + winner + " with score " + str(s1) + ":" + str(s2))
         
     if(m==3):
+        print("================================================"*2)
         print("block timestamp :"+str(c.blocks[len(c.blocks)-1].timestamp))
-        print("block number :"+str(c.blocks[len(c.blocks)-1].index))
+        print("block index :"+str(c.blocks[len(c.blocks)-1].index))
         print("block data :"+c.blocks[len(c.blocks)-1].data)
         print("block data hash :"+c.blocks[len(c.blocks)-1].hash)
         print("block privious_hash :"+c.blocks[len(c.blocks)-1].previous_hash)
+        print("================================================"*2)
         
     if(m==4):
         
-        print("you selected edit mode\n")
-        ed=int(input("select the number of block that you want to edit in the chain (now we have " + str(len(c.blocks)-1) + "block)"))
-        print("you select block "+ str(ed))
-        print("select data type in the block you want to change")
-        cd=int(input("1:index\n2:blockdata\n3:block previous_hash"))
+        print("\nEdit mode\n")
+        ed=int(input("select the number of block that you want to edit in the chain (now we have " + str(len(c.blocks)-1) + " block)\n>> "))
+        print("You select block "+ str(ed))
+        print("\nSelect data type in the block you want to change")
+        cd=int(input("\t1:index\n\t2:blockdata\n\t3:block previous_hash\n\n >> "))
         if(cd==1):
             print("old data is " + str(c.blocks[ed].index))
-            temp=int(input("change to:"))
-            c.blocks[ed].index = temp
+            temp=int(input("change to: "))
+                
+      c.blocks[ed].index = temp
             c.verify()
         if(cd==2):
             print("old data is " + str(c.blocks[ed].data))
-            temp=input("change to:")
+            temp=input("change to: ")
+
             c.blocks[ed].data = temp
             c.verify()
         if(cd==3):
             print("old data is " + str(c.blocks[ed].previous_hash))
-            temp=int(input("change to:"))
+            temp=int(input("change to: "))
             c.blocks[ed].previous_hash = temp
             c.verify()
     if(m==5):
-        print("-- print score data --")
-        mn=int(input("Enter match number (1 - " + str(len(c.blocks)-1) + ")"))
+        print("-- Print score data --")
+        mn=int(input("Enter match number (1 - " + str(len(c.blocks)-1) + ")\n>> "))
+        print("================================================"*2)
         print("match " + str(mn) +" : " + str(c.blocks[mn].data))
+        print("================================================"*2)
+
         
         
     
     if(m==6):
-        print("-- verifing data --")
+        print("================= verifing data =================")
         if(c.verify()):
-            print("no block has been edited")
+            print("No block has been edited")
         else:
-            print("warning !!! some blocks has been edited")
-
-        
-    
-    
+            print("Warning !!! some blocks has been edited")
+        print("=================================================")
     if(m==0):
         break
         
